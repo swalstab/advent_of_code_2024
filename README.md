@@ -34,6 +34,8 @@ npm start
 ## Screenshots
 
 ### Home
+![](./docs/images/Home.png)
 
 ### Day
+![](./docs/images/Day_8.png)
 
