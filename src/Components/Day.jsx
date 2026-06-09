@@ -1,6 +1,6 @@
-import Output from "./Output.js";
-import ButtonInput from "./ButtonInput.js";
-import ButtonHead from "./ButtonHead.js";
+import Output from "./Output.jsx";
+import ButtonInput from "./ButtonInput.jsx";
+import ButtonHead from "./ButtonHead.jsx";
 import data from "../data.js";
 import { useState } from "react";
 

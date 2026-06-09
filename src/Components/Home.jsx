@@ -1,4 +1,4 @@
-import Door from "./Door.js";
+import Door from "./Door.jsx";
 
 function Home({ daysSolved, onDoorClick }) {
   const doors = Array.from({ length: 25 }, (cur, idx) => idx + 1);

@@ -1,5 +1,5 @@
-import Home from "./Home.js";
-import Day from "./Day.js";
+import Home from "./Home.jsx";
+import Day from "./Day.jsx";
 import data from "../data.js";
 import { useState } from "react";
 
