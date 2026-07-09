@@ -17,7 +17,9 @@ function EditorActions({ setInputContent }) {
     <div className="editor__actions u-mb-6">
       {inputs.map((input) => (
         <Button key={input} onClick={() => handleClick(input)}>
-          {input}
+          {input === "final"
+            ? "Puzzle Input"
+            : input[0].toUpperCase() + input.slice(1)}
         </Button>
       ))}
     </div>
