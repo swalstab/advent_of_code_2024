@@ -9,7 +9,7 @@ function Homepage() {
       <ul className="calendar u-mb-6">
         {Array.from({ length: 25 }, (_, i) => {
           const day = i + 1;
-          const isSolved = daysData[day] !== undefined;
+          const isSolved = daysData[day]?.part1 !== undefined;
 
           return <Door key={day} day={day} solved={isSolved} />;
         })}
