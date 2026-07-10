@@ -8,3 +8,13 @@ export async function getInput(path) {
   const data = await res.text();
   return data;
 }
+
+export function getResult(value, script) {
+  if (value === "") {
+    return "Input required";
+  }
+  if (!script) {
+    console.error("Unknown script");
+  }
+  return script(value);
+}

@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { daysData } from "../../config/daysData";
-import { getInput, getInputPath } from "../../utils/inputs";
+import { getInput, getInputPath } from "../../utils/utils";
 import Button from "./Button";
 
 function EditorActions({ setInputContent }) {

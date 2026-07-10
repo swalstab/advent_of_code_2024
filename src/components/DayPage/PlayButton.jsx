@@ -1,14 +1,14 @@
 import { useParams } from "react-router";
 import { daysData } from "../../config/daysData";
+import { getResult } from "../../utils/utils";
 import Icon from "./Icon";
 
 function PlayButton({ part, inputContent, setOutput }) {
   const { day } = useParams();
+  const script = daysData[Number(day)]?.[`part${part}`];
 
   function handleClick() {
-    const script = daysData[Number(day)][`part${part}`];
-    const result = script(inputContent);
-    setOutput(result);
+    setOutput(getResult(inputContent, script));
   }
 
   return (
