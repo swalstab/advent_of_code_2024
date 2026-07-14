@@ -4,7 +4,7 @@ import Door from "../components/HomePage/Door";
 function Homepage() {
   return (
     <>
-      <h1 className="heading--xl u-mt-9 u-mb-8">Advent of Code 2024</h1>
+      <h1 className="heading heading--xl u-mt-9 u-mb-8">Advent of Code 2024</h1>
 
       <ul className="calendar u-mb-6">
         {Array.from({ length: 25 }, (_, i) => {
