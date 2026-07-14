@@ -13,7 +13,7 @@ function TitleGroup() {
           icon="left"
         />
       )}
-      <h1 className="heading--xl" style={{ gridColumn: 2 }}>
+      <h1 className="heading heading--xl" style={{ gridColumn: 2 }}>
         Day {day}
       </h1>
       {Number(day) < 25 && (
