@@ -44,7 +44,8 @@
 
   /* Font-Size */
   --font-size-heading-xl: 9.8rem;
-  --font-size-heading-lg: 5.2rem;
+  --font-size-heading-lg: 8.6rem;
+  --font-size-heading-md: 5.2rem;
 
   --font-size-text-md: 3.6rem;
   --font-size-text-sm: 2.4rem;
@@ -114,6 +115,10 @@ body {
 /**********************************************************/
 /* REUSABLE CLASSES */
 /**********************************************************/
+.heading {
+  text-align: center;
+}
+
 .heading--xl {
   margin: var(--space-6) 0;
   font-size: var(--font-size-heading-xl);
@@ -122,7 +127,7 @@ body {
 }
 
 .heading--lg {
-  font-size: var(--font-size-heading-lg);
+  font-size: var(--font-size-heading-md);
   font-weight: 700;
 }
 
@@ -218,7 +223,7 @@ body {
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: var(--border-radius);
-  font-size: var(--font-size-heading-lg);
+  font-size: var(--font-size-heading-md);
   font-weight: 700;
   color: inherit;
   text-decoration: none;
@@ -382,9 +387,12 @@ body {
 }
 
 .result__content {
+  display: flex;
   flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
   max-width: 70rem;
-  height: var(--space-8);
   padding: var(--space-1) var(--space-3);
   border: none;
   border-radius: var(--border-radius-sm);
@@ -398,4 +406,69 @@ body {
 .result--unsolved .result__content {
   background-color: var(--color-grey);
   color: var(--color-grey-lighter);
+}
+
+@media (max-width: 69em) {
+  html {
+    font-size: 56.25%;
+  }
+
+  .heading--xl {
+    font-size: var(--font-size-heading-lg);
+    line-height: inherit;
+  }
+}
+
+@media (max-width: 55em) {
+  html {
+    font-size: 50%;
+  }
+
+  .calendar {
+    gap: var(--space-4);
+  }
+
+  .header__title-group {
+    column-gap: var(--space-7);
+  }
+}
+
+@media (max-width: 45em) {
+  html {
+    font-size: 45%;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .header__home-link {
+    margin: var(--space-6);
+  }
+
+  .header__title-group {
+    column-gap: var(--space-6);
+  }
+}
+
+@media (max-width: 37em) {
+  html {
+    font-size: 35%;
+  }
+}
+
+@media (max-width: 30em) {
+  html {
+    font-size: 30%;
+  }
+
+  .header__title-group {
+    column-gap: var(--space-5);
+  }
+}
+
+@media (max-width: 25em) {
+  .result__content {
+    font-size: var(--font-size-text-sm);
+  }
 }
