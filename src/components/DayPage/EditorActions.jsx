@@ -3,7 +3,7 @@ import { daysData } from "../../config/daysData";
 import { getInput, getInputPath } from "../../utils/utils";
 import Button from "./Button";
 
-function EditorActions({ setInputContent }) {
+function EditorActions({ setInputContent, setOutput1, setOutput2 }) {
   const { day } = useParams();
   const inputs = daysData[Number(day)]?.input;
 
@@ -11,6 +11,8 @@ function EditorActions({ setInputContent }) {
     const path = getInputPath(day, fileName);
     const content = await getInput(path);
     setInputContent(content);
+    setOutput1("");
+    setOutput2("");
   }
 
   return (

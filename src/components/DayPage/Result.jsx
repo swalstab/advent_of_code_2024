@@ -4,8 +4,8 @@ import { useParams } from "react-router";
 import PlayButton from "./PlayButton";
 import Spinner from "./Spinner";
 
-function Result({ part, solved, inputContent, className }) {
-  const [output, setOutput] = useState("");
+function Result({ part, solved, inputContent, output, setOutput, className }) {
+  // const [output, setOutput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const worker = useRef(null);
   const { day } = useParams();
@@ -34,11 +34,10 @@ function Result({ part, solved, inputContent, className }) {
     };
 
     return () => worker.current.terminate();
-  }, []);
+  }, [setOutput]);
 
   function handleClick() {
     setIsLoading(true);
-
     worker.current.postMessage({ day, part, inputContent });
   }
 
