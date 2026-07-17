@@ -1,4 +1,4 @@
-function Textarea({ content, onContentChange }) {
+function Textarea({ content, dispatch }) {
   return (
     <textarea
       className="editor__textarea"
@@ -7,7 +7,7 @@ function Textarea({ content, onContentChange }) {
       spellCheck="false"
       placeholder="choose or type in your input"
       value={content}
-      onChange={(e) => onContentChange(e.target.value)}
+      onChange={(e) => dispatch({ type: "setInput", payload: e.target.value })}
     ></textarea>
   );
 }

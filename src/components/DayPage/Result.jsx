@@ -1,12 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router";
 
 import PlayButton from "./PlayButton";
 import Spinner from "./Spinner";
 
-function Result({ part, solved, inputContent, output, setOutput, className }) {
-  // const [output, setOutput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+function Result({
+  part,
+  solved,
+  inputContent,
+  output,
+  isLoading,
+  dispatch,
+  className,
+}) {
   const worker = useRef(null);
   const { day } = useParams();
 
@@ -19,25 +25,25 @@ function Result({ part, solved, inputContent, output, setOutput, className }) {
     );
 
     worker.current.onmessage = ({ data }) => {
-      setIsLoading(false);
+      dispatch({ type: "setIsLoading", payload: { [`${part}`]: false } });
 
       if (data.success) {
-        setOutput(data.result);
+        dispatch({ type: "setOutput", payload: { [`${part}`]: data.result } });
       } else {
         console.error(data.error);
-        setOutput("");
+        dispatch({ type: "resetOutput" });
       }
     };
 
     worker.current.onerror = () => {
-      setIsLoading(false);
+      dispatch({ type: "setIsLoading", payload: { [`${part}`]: false } });
     };
 
     return () => worker.current.terminate();
-  }, [setOutput]);
+  }, [dispatch, part]);
 
   function handleClick() {
-    setIsLoading(true);
+    dispatch({ type: "setIsLoading", payload: { [`${part}`]: true } });
     worker.current.postMessage({ day, part, inputContent });
   }
 

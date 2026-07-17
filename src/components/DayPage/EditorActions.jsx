@@ -3,16 +3,15 @@ import { daysData } from "../../config/daysData";
 import { getInput, getInputPath } from "../../utils/utils";
 import Button from "./Button";
 
-function EditorActions({ setInputContent, setOutput1, setOutput2 }) {
+function EditorActions({ dispatch }) {
   const { day } = useParams();
   const inputs = daysData[Number(day)]?.input;
 
   async function handleClick(fileName) {
     const path = getInputPath(day, fileName);
     const content = await getInput(path);
-    setInputContent(content);
-    setOutput1("");
-    setOutput2("");
+    dispatch({ type: "setInput", payload: content });
+    dispatch({ type: "resetOutput" });
   }
 
   return (

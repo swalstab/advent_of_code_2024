@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { useParams } from "react-router";
 import { daysData } from "../config/daysData";
 
@@ -8,11 +8,62 @@ import Result from "../components/DayPage/Result";
 
 import NotFoundPage from "./NotFoundPage";
 
+const initialState = {
+  inputContent: "",
+  outputs: {
+    1: "",
+    2: "",
+  },
+  isLoading: {
+    1: false,
+    2: false,
+  },
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "setInput":
+      return {
+        ...state,
+        inputContent: action.payload,
+        outputs: {
+          1: "",
+          2: "",
+        },
+      };
+    case "setOutput":
+      return {
+        ...state,
+        outputs: {
+          ...state.outputs,
+          ...action.payload,
+        },
+      };
+    case "setIsLoading":
+      return {
+        ...state,
+        isLoading: {
+          ...state.isLoading,
+          ...action.payload,
+        },
+      };
+    case "resetOutput":
+      return {
+        ...state,
+        outputs: {
+          1: "",
+          2: "",
+        },
+      };
+    default:
+      throw new Error("Unknown action");
+  }
+}
+
 function DayPage() {
   const { day } = useParams();
-  const [inputContent, setInputContent] = useState("");
-  const [output1, setOutput1] = useState("");
-  const [output2, setOutput2] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { inputContent, outputs, isLoading } = state;
 
   const numericDay = Number(day);
   const part1IsSolved = daysData[day]?.part1 !== undefined;
@@ -26,26 +77,23 @@ function DayPage() {
 
       {part1IsSolved && (
         <>
-          <Editor
-            inputContent={inputContent}
-            setInputContent={setInputContent}
-            setOutput1={setOutput1}
-            setOutput2={setOutput2}
-          />
+          <Editor inputContent={inputContent} dispatch={dispatch} />
           <Result
             part={1}
             solved={part1IsSolved}
             inputContent={inputContent}
-            output={output1}
-            setOutput={setOutput1}
+            output={outputs[1]}
+            isLoading={isLoading[1]}
+            dispatch={dispatch}
             className="u-mb-6"
           />
           <Result
             part={2}
             solved={part2IsSolved}
             inputContent={inputContent}
-            output={output2}
-            setOutput={setOutput2}
+            output={outputs[2]}
+            isLoading={isLoading[2]}
+            dispatch={dispatch}
             className="u-mb-9"
           />
         </>
