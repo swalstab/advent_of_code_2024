@@ -1,18 +1,19 @@
 import { useParams } from "react-router";
+import { useDay } from "../../contexts/DayContext";
 import { daysData } from "../../config/daysData";
 import { getInput, getInputPath } from "../../utils/utils";
+
 import Button from "./Button";
 
-function EditorActions({ setInputContent, setOutput1, setOutput2 }) {
+function EditorActions() {
   const { day } = useParams();
+  const { dispatch } = useDay();
   const inputs = daysData[Number(day)]?.input;
 
   async function handleClick(fileName) {
     const path = getInputPath(day, fileName);
     const content = await getInput(path);
-    setInputContent(content);
-    setOutput1("");
-    setOutput2("");
+    dispatch({ type: "setInputContent", payload: content });
   }
 
   return (
