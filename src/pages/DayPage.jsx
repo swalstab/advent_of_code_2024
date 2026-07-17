@@ -36,7 +36,7 @@ function reducer(state, action) {
         ...state,
         outputs: {
           ...state.outputs,
-          ...action.payload,
+          [action.part]: action.payload,
         },
       };
     case "setIsLoading":
@@ -44,7 +44,7 @@ function reducer(state, action) {
         ...state,
         isLoading: {
           ...state.isLoading,
-          ...action.payload,
+          [action.part]: action.payload,
         },
       };
     case "resetOutput":

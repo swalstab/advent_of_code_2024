@@ -11,7 +11,6 @@ function EditorActions({ dispatch }) {
     const path = getInputPath(day, fileName);
     const content = await getInput(path);
     dispatch({ type: "setInput", payload: content });
-    dispatch({ type: "resetOutput" });
   }
 
   return (

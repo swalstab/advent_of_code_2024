@@ -7,7 +7,9 @@ function Textarea({ content, dispatch }) {
       spellCheck="false"
       placeholder="choose or type in your input"
       value={content}
-      onChange={(e) => dispatch({ type: "setInput", payload: e.target.value })}
+      onChange={(e) => {
+        dispatch({ type: "setInput", payload: e.target.value });
+      }}
     ></textarea>
   );
 }

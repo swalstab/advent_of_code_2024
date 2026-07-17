@@ -25,10 +25,10 @@ function Result({
     );
 
     worker.current.onmessage = ({ data }) => {
-      dispatch({ type: "setIsLoading", payload: { [`${part}`]: false } });
+      dispatch({ type: "setIsLoading", part, payload: false });
 
       if (data.success) {
-        dispatch({ type: "setOutput", payload: { [`${part}`]: data.result } });
+        dispatch({ type: "setOutput", part, payload: data.result });
       } else {
         console.error(data.error);
         dispatch({ type: "resetOutput" });
@@ -36,14 +36,14 @@ function Result({
     };
 
     worker.current.onerror = () => {
-      dispatch({ type: "setIsLoading", payload: { [`${part}`]: false } });
+      dispatch({ type: "setIsLoading", part, payload: false });
     };
 
     return () => worker.current.terminate();
   }, [dispatch, part]);
 
   function handleClick() {
-    dispatch({ type: "setIsLoading", payload: { [`${part}`]: true } });
+    dispatch({ type: "setIsLoading", part, payload: true });
     worker.current.postMessage({ day, part, inputContent });
   }
 
