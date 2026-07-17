@@ -1,20 +1,17 @@
 import { useEffect, useRef } from "react";
 import { useParams } from "react-router";
+import { useDay } from "../../contexts/DayContext";
 
 import PlayButton from "./PlayButton";
 import Spinner from "./Spinner";
 
-function Result({
-  part,
-  solved,
-  inputContent,
-  output,
-  isLoading,
-  dispatch,
-  className,
-}) {
+function Result({ part, solved, className }) {
   const worker = useRef(null);
   const { day } = useParams();
+  const { inputContent, outputs, loading, dispatch } = useDay();
+
+  const output = outputs[part];
+  const isLoading = loading[part];
 
   useEffect(() => {
     worker.current = new Worker(
@@ -25,7 +22,7 @@ function Result({
     );
 
     worker.current.onmessage = ({ data }) => {
-      dispatch({ type: "setIsLoading", part, payload: false });
+      dispatch({ type: "setLoading", part, payload: false });
 
       if (data.success) {
         dispatch({ type: "setOutput", part, payload: data.result });
@@ -36,14 +33,14 @@ function Result({
     };
 
     worker.current.onerror = () => {
-      dispatch({ type: "setIsLoading", part, payload: false });
+      dispatch({ type: "setLoading", part, payload: false });
     };
 
     return () => worker.current.terminate();
   }, [dispatch, part]);
 
   function handleClick() {
-    dispatch({ type: "setIsLoading", part, payload: true });
+    dispatch({ type: "setLoading", part, payload: true });
     worker.current.postMessage({ day, part, inputContent });
   }
 

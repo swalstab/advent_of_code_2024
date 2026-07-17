@@ -1,4 +1,7 @@
-function Textarea({ content, dispatch }) {
+import { useDay } from "../../contexts/DayContext";
+
+function Textarea() {
+  const { inputContent: content, dispatch } = useDay();
   return (
     <textarea
       className="editor__textarea"
@@ -8,7 +11,7 @@ function Textarea({ content, dispatch }) {
       placeholder="choose or type in your input"
       value={content}
       onChange={(e) => {
-        dispatch({ type: "setInput", payload: e.target.value });
+        dispatch({ type: "setInputContent", payload: e.target.value });
       }}
     ></textarea>
   );
