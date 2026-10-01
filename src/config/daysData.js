@@ -10,7 +10,7 @@ import fnDay05Part1 from "../scripts/day05part1";
 import fnDay05Part2 from "../scripts/day05part2";
 import fnDay06Part1 from "../scripts/day06part1";
 import fnDay06Part2 from "../scripts/day06part2";
-// import fnDay07Part1 from "../scripts/day07part1";
+import fnDay07Part1 from "../scripts/day07part1";
 // import fnDay07Part2 from "../scripts/day07part2";
 import fnDay08Part1 from "../scripts/day08part1";
 import fnDay08Part2 from "../scripts/day08part2";
@@ -64,7 +64,7 @@ export const daysData = {
   },
   7: {
     input: ["final", "example"],
-    part1: undefined,
+    part1: fnDay07Part1,
     part2: undefined,
   },
   8: {
