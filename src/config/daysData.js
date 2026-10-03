@@ -28,6 +28,7 @@ import fnDay14Part1 from "../scripts/day14part1";
 import fnDay15Part1 from "../scripts/day15part1";
 import fnDay15Part2 from "../scripts/day15part2";
 // import fnDay16Part1 from "../scripts/day16part1";
+import fnDay17Part1 from "../scripts/day17part1";
 // import fnDay18Part1 from "../scripts/day18part1";
 // import fnDay19Part1 from "../scripts/day19part1";
 
@@ -121,8 +122,17 @@ export const daysData = {
     part2: undefined,
   },
   17: {
-    input: ["final", "example"],
-    part1: undefined,
+    input: [
+      "final",
+      "example1",
+      "example2",
+      "example3",
+      "example4",
+      "example5",
+      "example6",
+      "example7",
+    ],
+    part1: fnDay17Part1,
     part2: undefined,
   },
   18: {
